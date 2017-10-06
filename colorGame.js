@@ -8,10 +8,11 @@ var easyButton = document.querySelector("#easyButton");
 var hardButton = document.querySelector("#hardButton");
 var colorAmount = 6;
 
-reset.addEventListener("click", function() {
+resetButton.addEventListener("click", function() {
 	changeColors(colorAmount);
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 	resetButton.textContent = "New Colors";
+	message.textContent = "";
 });
 
 easyButton.addEventListener("click", function() {
