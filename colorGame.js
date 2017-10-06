@@ -3,9 +3,39 @@ var squares = document.querySelectorAll(".square");
 var colorDisplay = document.querySelector("#colorDisplay");
 var message = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
+var easyButton = document.querySelector("#easyButton");
+var hardButton = document.querySelector("#hardButton");
+var colorAmount = 6;
+
+reset.addEventListener("click", function() {
+	changeColors(colorAmount);
+	h1.style.backgroundColor = "#232323";
+	resetButton.textContent = "New Colors";
+});
+
+easyButton.addEventListener("click", function() {
+	this.classList.add("selected");
+	hardButton.classList.remove("selected");
+	colorAmount = 3;
+	changeColors(colorAmount);
+	for (var i = colorAmount; i < squares.length; i++) {
+		squares[i].style.display = "none";
+	}
+});
+
+hardButton.addEventListener("click", function() {
+	this.classList.add("selected");
+	easyButton.classList.remove("selected");
+	colorAmount = 6;
+	changeColors(colorAmount);
+	for (var i = 0; i < squares.length; i++) {
+		squares[i].style.display = "block";
+	}
+});
 
 for (var i = 0; i < squares.length; i++) {
-	changeColors();
+	changeColors(colorAmount);
 	squares[i].addEventListener("click", function() {			      
 		if (pickedColor === this.style.backgroundColor) {
 			message.textContent = "Correct";
@@ -13,6 +43,7 @@ for (var i = 0; i < squares.length; i++) {
 				squares[x].style.backgroundColor = pickedColor;
 			}
 			h1.style.backgroundColor = pickedColor;
+			resetButton.textContent = "Play Again?";
 		}
 		else {
 			this.style.backgroundColor = "#232323";
@@ -21,9 +52,9 @@ for (var i = 0; i < squares.length; i++) {
 	});
 }
 
-function changeColors() {
-	var arr = generateRandomColors(6);
-	pickedColor = arr[Math.floor(Math.random() * 6)];
+function changeColors(num) {
+	var arr = generateRandomColors(num);
+	pickedColor = arr[Math.floor(Math.random() * num)];
 	colorDisplay.textContent = pickedColor;
 	for (var i = 0; i < squares.length; i++) {
 		squares[i].style.backgroundColor = arr[i];

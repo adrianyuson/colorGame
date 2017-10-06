@@ -20,6 +20,13 @@ h1 {
     text-align: center;
 }
 
-#message {
-    color: white;
+.selected {
+	background-color: blue;
+}
+
+#stripe {
+	background: white;
+	height: 30px;
+	text-align: center;
+	text-align: :left;
 }
